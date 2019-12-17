@@ -1,0 +1,155 @@
+body
+{
+	background-color:black;
+	color:white;
+	font-family:arial;
+}
+
+.test
+{ border: solid red 1px; background-color:rgba(255,0,0,.1); }
+.test2
+{ border: solid blue 1px; background-color:rgba(0,0,255,.1); }
+
+#play_screen
+{
+	/* screen size: 720x480 */
+	position:relative;
+	width:720px;
+	height:480px;
+	background-color:gray;
+	margin:auto;
+}
+
+#sky
+{
+	height:inherit;
+	width:inherit;
+	position:absolute;
+	z-index:1;
+}
+
+#ground
+{
+	/*
+	height:inherit;
+	width:auto;
+	*/
+	z-index:3;
+	position:relative;
+	left:50%;
+}
+
+#enemy
+{
+	position:relative;
+	top:0;
+	left:80px;
+	z-index:3;
+	height:inherit;
+	width:auto;
+	/*position:relative;
+	left:-50%;*/
+	transform:scale(.9);
+}
+#enemy:active
+{ transform:scale(.85); }
+
+.numericalFont
+{
+	font-family: 'Pacifico', cursive;
+	font-size:2em;
+	font-weight:bold;
+	z-index:4;
+	color:black;
+	text-shadow:
+		-1px -1px 0 #fe7,
+		1px -1px 0 #fe7,
+		-1px 1px 0 #fe7,
+		1px 1px 0 #fe7;
+	pointer-events:none;
+}
+
+#show_enemyHP
+{
+	/*
+		-o-text-stroke-width:5px;
+		-o-text-stroke-color:#fe7;
+		
+		-moz-text-stroke-width:5px;
+		-moz-text-stroke-color:#fe7;
+		
+		-webkit-text-stroke-width:1px;
+		-webkit-text-stroke-color:#fe7;
+		
+		paint-order:stroke fill;
+	*/
+	margin:0;
+	position:absolute;
+	bottom:40%;
+	right:30%;
+	z-index:5;
+}
+
+#show_playerCurrency
+{
+	position:absolute;
+	bottom:10px;
+	right:10px;
+	z-index:6;
+}
+
+.btn
+{ cursor:pointer; }
+
+#btn_menu
+{
+	/*
+	background-color:rgba(0,0,0,.8);
+	border: solid #fe7 2px;
+	border-radius:20%;
+	*/
+	position:absolute;
+	top:10px;
+	left:10px;
+	z-index:9;
+}
+
+#btn_menu_close
+{
+	position:absolute;
+	top:10px;
+	right:10px;
+	z-index:11;
+}
+
+#menu_box
+{
+	position:absolute;
+	top:0;
+	left:0;
+	z-index:10;
+	width:100%;
+	height:100%;
+	background-color:gray;
+}
+
+.menu_button
+{
+	font-size:1.2em;
+	background-color:brown;
+	border: solid black 2px;
+	width:100%;
+	margin:5px;
+	text-align:center;
+	border-radius:10%;
+}
+
+#menu_button_container
+{
+	width:25%;
+	margin:0 auto;
+	display:flex;
+		justify-content:center;
+		align-items:center;
+		flex-direction:column;
+}

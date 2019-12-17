@@ -1,0 +1,64 @@
+<html>
+	<head>
+		<title>clicker.html</title>
+		<meta charset="utf8">
+		
+		<link rel="stylesheet" href="res\style\reset.css">
+		<link rel="stylesheet" href="res\style\main.css">
+		
+		<!-- GOOGLE FONT -->
+		<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+		
+		<style>
+			#play_screen { display:none; }
+			#loadingMsg { display:none; }
+		</style>
+	</head>
+	
+	<body onload="checkImageLoad()" >
+		<span id="loadingMsg">
+			loading, please wait...
+		</span>
+		<script src="res\script\libs\jquery-3.4.1.js"></script>
+		<div id="play_screen">
+			<img id="sky" src="res/imgs/sky/6.jpg">
+			<!-- <img id="ground" src="res/imgs/ground/..."> -->
+			<img id="enemy" src="res/imgs/enemy/taiga.png" onclick="enemy.hit()">
+			<img id="btn_menu" class="btn" src="res/imgs/ui/pane_close.png" onclick="showMenu()"></img>
+			<span class="numericalFont" id="show_enemyHP"></span>
+			<span class="numericalFont" id="show_playerCurrency">0 gold</span>
+			<div id="menu_box">
+				<img id="btn_menu_close" class="btn" src="res/imgs/ui/pane_open.png" onclick="showMenu()"></img>
+				<div id="menu_button_container">
+					<span class="btn menu_button" onclick="saveGame()">SAVE</span>
+					<span class="btn menu_button" onclick="loadGame()">LOAD</span>
+				</div>
+			</div>
+		</div>
+		
+		<script src="res/script/vars.js"></script>
+		<script src="res/script/funcs.js"></script>
+		<script src="res/script/main.js"></script>
+
+	</body>
+	<script type="text/javascript">
+		// --- WAIT FOR LOAD
+		// but not working
+	/*
+		$(window).on("load", function()
+		{
+			$('#play_screen').show();
+			$('#loadingMsg').hide();
+		} );
+	*/
+		document.getElementById("menu_box").style.display="none";
+	
+		function checkImageLoad()
+		{
+			if (document.getElementById("sky").complete == true)
+			{
+				document.getElementById("play_screen").style.display = "block";
+			}
+		}
+	</script>
+</html>
