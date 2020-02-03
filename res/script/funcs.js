@@ -25,7 +25,8 @@ enemy.hit = function ()
 
 	if( enemy.hp < 1 )
 	{
-		spawnRandomEnemy();
+        level.progress();
+		enemy.spawn("random");
 		enemy.hp = enemy.maxHP;
 
 		player.currency = Math.round( player.currency += ( enemy.maxHP / 3 ) );
@@ -36,49 +37,51 @@ enemy.hit = function ()
 	document.getElementById("show_playerCurrency").innerHTML = player.currency + " gold";
 }
 
-function killEnemy(enemy)
+enemy.spawn = function (id)
 {
-	//enemy.?
-	// make em disappear
-}
-
-function spawnRandomEnemy()
-{
-	var i = getRandomInt(0,enemyPool.length-1);
-	sprite_url = "res/imgs/enemy/"+enemyPool[i]+".png";
-	document.getElementById("enemy").src = sprite_url;
-	log("(rand)enemy_pool="+i);
-	log(sprite_url);
+    if(id == "random")
+    {
+        var i = getRandomInt(0,enemyPool.length-1);
+        sprite_url = "res/imgs/enemy/"+enemyPool[i]+".png";
+        document.getElementById("enemy").src = sprite_url;
+        log("spawned random enemy ="+i+":"+sprite_url);
+    }
+    else
+    {
+        sprite_url = "res/imgs/enemy/"+id+".png";
+        document.getElementById("enemy").src = sprite_url;
+        log("spawned enemy ID ="+id);
+    }
 }
 
 function setCurrency(value)
-{ player_currency = value; return "u cheaty biscuit"; }
+{ player.currency = value; return "u cheaty biscuit"; }
 
-function loadGame()
+game.load = function()
 {
-	var data = prompt("Please insert your data string");
-	data = data.split("|");
-	for(var i=0; i<data.length;i++)
-	{ data[i] = data[i] *1; } // converts from string to number
+    var data = prompt("Please insert your data string");
+    data = data.split("|");
+    for(var i=0; i<data.length;i++)
+    { data[i] = data[i] *1; } // converts from string to number
 
-	player.stats.baseDmg = data[0];
-	player.stats.bonusDmg = data[1];
-	player.currency = data[2];
-	enemy.maxHP = data[3];
+    player.stats.baseDmg = data[0];
+    player.stats.bonusDmg = data[1];
+    player.currency = data[2];
+    enemy.maxHP = data[3];
 
-	// auto close menu
-	showMenu();
-	forceRedraw("show_enemyHP");
+    // auto close menu
+    showMenu();
+    forceRedraw("show_enemyHP");
 }
 
-function saveGame()
+game.save = function()
 {
 	var data = player.stats.baseDmg + "|" +
 	           player.stats.bonusDmg + "|" +
 			   player.currency + "|" +
-			   enemy.maxHP;
-	               
-	alert("Please copy and store the following string:\n" + data);
+               enemy.maxHP;
+               
+    alert("Please copy and store the following string:\n" + data);
 	console.log("saveGame();data{"+data+"}");
 }
 
@@ -94,7 +97,7 @@ function showMenu()
 }
 
 var prevState;
-	
+
 function forceRedraw(element)
 {
     //prevState = document.getElementById(element).style.display;
@@ -104,3 +107,18 @@ function forceRedraw(element)
 }
 
 // document.getElementById("show_enemyHP").style.display
+
+level.progress = function()
+{
+    if(level.stageID >= 10)
+    {
+        level.sectorID++;
+        level.stageID=1;
+        enemy.maxHP = enemy.maxHP + Math.round( (enemy.maxHP * 2) / 9 );
+    }
+    else
+    {
+        level.stageID++;
+    }
+    document.getElementById("show_stage").innerHTML = level.sectorID + "-" + level.stageID;
+}
