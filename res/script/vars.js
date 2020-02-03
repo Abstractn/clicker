@@ -14,7 +14,8 @@ var enemy =
 {
 	maxHP:100,
 	hp:100,
-	hit:null
+    hit:null,
+    spawnRandom:null
 };
 var enemyList = ["taiga","rikka","miku","illya","asuza"];
 var enemyPool = enemyList; // always the same for now
@@ -29,3 +30,16 @@ var player =
 	},
 	currency:0
 };
+
+var level =
+{
+    progress:null,
+    sectorID:1,
+    stageID:1
+}
+
+var game =
+{
+    load:null,
+    save:null
+}
