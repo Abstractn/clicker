@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="res\style\main.css">
 		
 		<!-- GOOGLE FONT -->
-		<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+		<!-- <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet"> -->
 		
 		<style>
 			#play_screen { display:none; }
@@ -24,16 +24,22 @@
 			<img id="sky" src="res/imgs/sky/6.jpg">
 			<!-- <img id="ground" src="res/imgs/ground/..."> -->
 			<img id="enemy" src="res/imgs/enemy/taiga.png" onclick="enemy.hit()">
-			<img id="btn_menu" class="btn" src="res/imgs/ui/pane_close.png" onclick="showMenu()"></img>
-			<span class="numericalFont" id="show_enemyHP"></span>
-			<span class="numericalFont" id="show_playerCurrency">0 gold</span>
+            <img id="btn_menu" class="btn" src="res/imgs/ui/pane_close.png" onclick="showMenu()"></img>
+            
+            <!-- UI -->
+            <span id="show_enemyHP" class="numericalFont"></span>
+            <span id="show_playerCurrency" class="numericalFont">0 gold</span>
+            <span id="show_stage" class="numericalFont" >1-1</span>
+
+            <!-- MENU -->
 			<div id="menu_box">
 				<img id="btn_menu_close" class="btn invertedColours" src="res/imgs/ui/pane_open.png" onclick="showMenu()"></img>
 				<div id="menu_button_container">
-					<span class="btn menu_button" onclick="saveGame()">SAVE</span>
-					<span class="btn menu_button" onclick="loadGame()">LOAD</span>
+					<span class="btn menu_button" onclick="game.save()">SAVE</span>
+					<span class="btn menu_button" onclick="game.load()">LOAD</span>
 				</div>
-			</div>
+            </div>
+            
 		</div>
 		
 		<script src="res/script/vars.js"></script>
